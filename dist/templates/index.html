@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h2>顔認証システム</h2>
+    </div>
+    <div class="col-md-2">
+        <a href="/logout" class="btn btn-primary" style="margin-bottom: 5px;">ログアウト</a>
+    </div>
+</div>
+
+<hr>
+<div class="info">
+    <ul class="camera">
+        <li>カメラ映像配信</li>
+        <li><a href="/stream" class="btn btn-primary">ストリーミング</a></li>
+        <li>カメラの登録</li>
+        <li><a href="/register_camera" class="btn btn-success">カメラ登録</a></li>
+        <li>登録カメラ一覧</li>
+        <li><a href="/list_camera" class="btn btn-info">カメラ一覧</a></li>
+    </ul>
+    
+    <ul class="user">
+        <li>ユーザ登録</li>
+        <li><a href="/register_user" class="btn btn-success">ユーザ登録</a></li>
+        <li>ユーザデータ登録</li>
+        <li><a href="/register_data" class="btn btn-success">ユーザデータ登録</a></li>
+        <li>登録ユーザ一覧</li>
+        <li><a href="/list_user" class="btn btn-info">ユーザ一覧表示</a></li>
+    </ul>
+</div>
+
+
+{% endblock %}

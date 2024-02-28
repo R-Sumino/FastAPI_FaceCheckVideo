@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h2>顔認証システム</h2>
+    </div>
+    <div class="col-md-2">
+        <a href="/logout" class="btn btn-primary" style="margin-bottom: 5px;">ログアウト</a>
+    </div>
+</div>
+
+<hr>
+
+<nav class="menu">
+    <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+    <label class="menu-open-button" for="menu-open">
+        <span class="lines line-1"></span>
+        <span class="lines line-2"></span>
+        <span class="lines line-3"></span>
+    </label>
+
+    <!-- <img src="../static/image/icons8-add-file-50.png"> -->
+    <a href="/stream" class="menu-item green tooltip-top"> <i class="fa fa-video" aria-hidden="true">
+        <div class="tooltip-info top">
+            Facial Recognition
+        </div>
+    </i> </a>
+    <a href="/list_camera" class="menu-item lightblue tooltip-right"> <i class="fa fa-list">
+        <div class="tooltip-info right">
+            Camera Information List
+        </div>
+    </i> </a>
+    <a href="/register_camera" class="menu-item blue tooltip-right"> <i class="fa fa-plus">
+        <div class="tooltip-info right">
+            Regist Camera
+        </div>
+    </i> </a>
+    <a href="/list_user" class="menu-item purple tooltip-bottom"> <i class="fa fa-users">
+        <div class="tooltip-info bottom">
+            User Information List
+        </div>
+    </i> </a>
+    <a href="/register_user" class="menu-item red tooltip-left"> <i class="fa fa-user-plus">
+        <div class="tooltip-info left">
+            Regist <br>User
+        </div>
+    </i> </a>
+    <a href="/register_data" class="menu-item orange  tooltip-left"> <i class="fa fa-id-card">
+        <div class="tooltip-info left">
+            Regist UserData
+        </div>
+    </i> </a>
+</nav>
+
+
+
+{% endblock %}

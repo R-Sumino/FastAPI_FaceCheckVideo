@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+    <div class="row">
+    <div class="col-md-10">
+        <h1>カメラの登録</h1>
+    </div>
+    <!-- <div class="col-md-2">
+        <a href="/" class="btn btn-primary" style="margin-bottom: 5px;">トップに戻る</a>
+        <a href="/list_camera" class="btn btn-info" style="margin-bottom: 5px;">カメラ一覧</a>
+    </div> -->
+
+    <div class="menu-section">
+        <div class="menu-toggle">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+        <nav class="outmenu">
+            <ul role="navigation" class="hidden">
+                <li><a href="/"><i class="fa fa-home"> トップに戻る</i></a></li>
+                <li><a href="/list_camera"><i class="fa fa-list"> カメラ情報一覧</i></a></li>
+                <li><a href="/list_user"><i class="fa fa-users"> ユーザ情報一覧</i></a></li>
+                <li><a href="/register_user"><i class="fa fa-user-plus"> ユーザ登録</i></a></li>
+                <li><a href="/register_data"><i class="fa fa-id-card"> ユーザデータ登録</i></a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<hr>
+
+<p class="text-danger" style="width: 85%; margin: auto">{% for e in error %}{{ e }}<br>{% endfor %}</p>
+
+<form action="/register_camera" method="post"  class="regist-form">
+    <br>
+    <div class="group1">
+        <input required="" type="text" class="input1" name="cameraname" value="{{cameraname}}">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Camera Name</label>
+    </div>
+    <p style="margin-left: 10px; font-size: 15px; color: rgb(180, 180, 180);">※カメラの名称を設定してください。</p>
+    <br>
+    
+    <div class="group1">
+        <input required="" type="text" class="input1" name="location" value="{{location}}">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Camera Location</label>
+    </div>
+    <p style="margin-left: 10px; font-size: 15px; color: rgb(180, 180, 180);">※カメラの設置場所を入力してください。</p>
+    <br>
+
+    <div class="cp_ipradio">
+        <p style="color: #bbb;">Camera Type</p>
+        <ul>
+            <li class="list_item">
+                <input class="js-check option-input" type="radio" name="camera-type" value="Web" id="c_rb1" onclick="formSwitch()" required />
+                <label for="c_rb1">Webカメラ</label>
+            </li>
+            <li class="list_item">
+                <input class="js-check option-input" type="radio" name="camera-type" value="IP" id="c_rb2" onclick="formSwitch()" />
+                <label for="c_rb2">IPカメラ</label>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <!-- <input class="js-check" type="radio" name="camera-type" value="Web" onclick="formSwitch()" required>Webカメラ<br>
+    <input class="js-check" type="radio" name="camera-type" value="IP" onclick="formSwitch()">IPカメラ -->
+    <div>
+        <div id="Web-id" class="group1">
+            <select name="camera-id" id="device" required class="input1" style="background-color: transparent;">
+                <option value="" hidden disabled selected></option>
+                {% for i in range(10) %}
+                <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Connect Number</label>
+        </div>
+        <div class="group1" id="IP-id">
+            <input type="url" class="input1" id="ipcam" name="url" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>URL</label>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-- <button type="submit" class="btn btn-info" style="display: block; margin-bottom: 10px;">接続テスト</button>
+    <button type="submit" class="btn btn-success" style="display: block;">登録</button> -->
+
+    <button type="submit" class="regist-button">
+        <div class="svg-wrapper-1">
+            <div class="svg-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+            </svg>
+            </div>
+        </div>
+        <span>Regist</span>
+    </button>
+
+</form>
+
+<script src="{{ url_for('static', path='/js/regist-radio-button.js') }}"></script>
+<script src="{{ url_for('static', path='/js/input-autosize.js') }}"></script>
+<script src="{{ url_for('static', path='/js/outmenu.js') }}"></script>
+
+{% endblock %}

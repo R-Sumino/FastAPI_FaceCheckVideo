@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h1>Complete your Registration</h1>
+    </div>
+    <div class="col-md-2">
+        <a href="/" class="btn btn-primary">トップページ</a>
+    </div>
+</div>
+
+<hr>
+<p>社員番号{{ number }}、{{ username }}さんを登録しました。</p>
+<p>
+    ユーザを登録するなら<span style="color: limegreen;">ユーザ登録</span>を、<br>
+    ユーザの一覧を見たいなら<span style="color: darkcyan;">ユーザ一覧</span>を押してください。
+</p>
+
+<p>
+    顔画像データを登録するなら<span style="color: limegreen;">ユーザデータ登録</span>を、<br>
+    登録ユーザのデータ一覧を見たいなら<span style="color: darkcyan;">ユーザデータ一覧</span>押してください。
+</p>
+<br>
+<p>
+    <a href="/register_user" class="btn btn-success" style="display: inline-block;">ユーザ登録</a>
+    <a href="/list_user" class="btn btn-info" style="display: inline-block;">ユーザ一覧</a>
+</p>
+<p>
+    <a href="/register_data" class="btn btn-success" style="display: inline-block;">ユーザデータ登録</a>
+    <a href="/list_userdata/{{ number }}:{{ username }}" class="btn btn-info" style="display: inline-block;">ユーザデータ一覧</a>
+</p>
+
+{% endblock %}

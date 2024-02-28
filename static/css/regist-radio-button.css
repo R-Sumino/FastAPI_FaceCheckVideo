@@ -1,0 +1,63 @@
+.cp_ipradio {
+	width: 90%;
+	margin: 1em 0;
+	text-align: left;
+}
+.cp_ipradio ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.cp_ipradio .list_item {
+	position: relative;
+}
+.cp_ipradio .list_item:hover label {
+	color: #45bd45;
+}
+.cp_ipradio .list_item:hover label::before {
+	margin-right: 2em;
+	border: 0.2em solid #45bd45;
+}
+.cp_ipradio .option-input {
+	display: none;
+}
+.cp_ipradio .option-input:checked + label {
+	color: #45bd45;
+    font-weight: bolder;
+    font-size: larger;
+}
+.cp_ipradio .option-input:checked + label::before {
+	margin-right: 2em;
+	border: 0.2em solid #45bd45;
+	background: #45bd45;
+}
+.cp_ipradio label {
+	display: -webkit-box;
+	display: flex;
+	padding: 0.6em 0;
+	cursor: pointer;
+	-webkit-transition: all 0.25s linear;
+	        transition: all 0.25s linear;
+	text-transform: uppercase;
+	-webkit-box-align: center;
+	align-items: center;
+}
+.cp_ipradio label::before {
+	display: block;
+	width: 1em;
+	height: 1em;
+	margin-right: 0.625em;
+	content: '';
+	-webkit-transition: all 0.25s linear;
+	        transition: all 0.25s linear;
+	border: 0.2em solid #45bd45;
+	border-radius: 50%;
+}
+.cp_ipradio .option-input:disabled + label {
+	cursor: not-allowed;
+	color: #b8b7b7;
+}
+.cp_ipradio .option-input:disabled + label::before {
+	cursor: not-allowed;
+	border: 0.2em solid #b8b7b7;
+}

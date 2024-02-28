@@ -1,0 +1,133 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h1>登録カメラ一覧</h1>
+    </div>
+    <!-- <div class="col-md-2">
+        <a href="/" class="btn btn-primary" style="margin-bottom: 5px;">トップに戻る</a>
+        <a href="/stream" class="btn btn-primary" style="margin-bottom: 5px;">ストリーミングへ</a>
+        <a href="/register_camera" class="btn btn-success" style="margin-bottom: 5px;">カメラの登録</a>
+    </div> -->
+
+    <div class="menu-section">
+        <div class="menu-toggle">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+        <nav class="outmenu">
+            <ul role="navigation" class="hidden">
+                <li><a href="/"><i class="fa fa-home"> トップに戻る</i></a></li>
+                <li><a href="/stream"><i class="fa fa-video" aria-hidden="true"> ストリーミング</i></a></li>
+                <li><a href="/register_camera"><i class="fa fa-plus"> カメラの登録</i></a></li>
+                <li><a href="/list_user"><i class="fa fa-users"> ユーザ情報一覧</i></a></li>
+                <li><a href="/register_user"><i class="fa fa-user-plus"> ユーザ登録</i></a></li>
+                <li><a href="/register_data"><i class="fa fa-id-card"> ユーザデータ登録</i></a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<hr>
+
+<br>
+<h3>カメラ一覧</h3>
+<br>
+<form action="/list_camera" method="post" name="search_form">
+    <!-- <select name="category" style="margin-bottom: 0.5rem;">
+        <option value="">選択してください</option>
+        <option value="id">ID</option>
+        <option value="cameraname">カメラ名称</option>
+        <option value="url">URL</option>
+        <option value="location">設置場所</option>
+    </select> -->
+
+    <div class="group1" style="margin-bottom: 1rem;">
+        <select name="category" required id="category" class="input1" style="background-color: transparent;">
+                <option value="" hidden disabled selected></option>
+                <option value="" hidden></option>
+                <option value="id">ID</option>
+                <option value="cameraname">カメラ名称</option>
+                <option value="url">URL</option>
+                <option value="location">設置場所</option>
+        </select>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Select Category</label>
+    </div>
+
+    <br>
+    <div class="group">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+            <g>
+                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+            </g>
+        </svg>
+        <input class="input" type="search" name="search" placeholder="Search" size="30">
+        <input type="submit" name="submit" value="検索" hidden>
+    </div>
+    <br>
+
+    <div class="default-btn">
+        <input type="submit" name="submit" value="Show All" onclick="OnButtonClick();">
+    </div>
+</form>
+
+<br>
+<p class="text-danger">{% for e in error %}{{ e }}<br>{% endfor %}</p>
+
+<br>
+<form action="/list_camera" method="post">
+    <div class="overflow-auto" style="max-height: 500px;">
+        <table class="table" style="text-align: center;">
+            <thead class="table-dark" style="position: sticky; top: 0;">
+                <tr>
+                    <th>ID</th>
+                    <th>カメラ名称</th>
+                    <th>URL</th>
+                    <th>設置場所</th>
+                    <th>編集</th>
+                    <th>削除</th>
+                </tr>
+            </thead>
+            <tbody style="vertical-align: middle;">
+                {% for c in camera %}
+                <tr>
+                    <td>{{ c.id }}</td>
+                    <td>{{ c.cameraname }}</td>
+                    <td>{{ c.url }}</td>
+                    <td>{{ c.location }}</td>
+                    <td>
+                        {% set path = all_path ~ ":" ~ c.id %}
+                        <div class="edit e-camera">
+                            <a href="/edit/{{ path }}">
+                                <svg class="css-i6dzq1" stroke-linejoin="round" stroke-linecap="round" fill="none" stroke-width="2" stroke="#FFFFFF" height="24" width="24" viewBox="0 0 24 24">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="delete-list edit">
+                            <a href="/delete_camera/{{ c.id }}">
+                                <img src="./static/image/trash-can.svg">
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</form>
+
+
+<script src="{{ url_for('static', path='/js/search-alldisplay.js') }}"></script>
+<script src="{{ url_for('static', path='/js/outmenu.js') }}"></script>
+<script src="{{ url_for('static', path='/js/search.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,127 @@
+/* From uiverse.io by @G4b413l */
+.regist-form {
+    width: 85%;
+    margin: auto;
+}
+
+.group1 {
+    position: relative;
+    margin: 0 0 10px 0;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.input1 {
+    color: white;
+    font-size: 16px;
+    padding: 6px 10px 6px 5px;
+    min-width: 200px;
+    max-width: 100%;
+    /* width: 200px; */
+    border: none;
+    border-bottom: 1px solid #bbb;
+    background: transparent;
+    border-radius: 5%;
+	background-color: transparent;
+}
+
+.input1 select::-ms-expand {
+    display: none;
+}
+
+.input1 option {
+    color: rgb(120, 120, 120);
+}
+
+.input1:focus {
+    outline: none;
+}
+
+.input1:hover {
+    background-color: rgba(85, 233, 184, 0.2);
+    border-color: rgba(85, 233, 184, 0.4);
+    box-shadow: 0 0 0 4px rgb(85 233 184 / 10%);
+}
+
+.group1 label {
+    color: #bbb;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    margin-bottom: 10px;
+    left: 5px;
+    top: 7px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.input1:focus ~ label, .input1:valid ~ label {
+    top: -20px;
+    font-size: 14px;
+    color: #28eb21;
+}
+
+.bar {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.bar:before, .bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #28eb21;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+.input1:focus ~ .bar:before, .input1:focus ~ .bar:after {
+    width: 50%;
+}
+
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.input1:focus ~ .highlight {
+    animation: inputHighlighter 0.3s ease;
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+
+/* 自動保管の背景と文字を変更させない、もしくは指定するため */
+.group1 input:-webkit-autofill {
+    /* -webkit-box-shadow: 0 0 0 1000px #09ff15 inset; */
+    -webkit-text-fill-color: #fff;
+    transition: background-color 50000s ease-in-out 0s !important;
+}

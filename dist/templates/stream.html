@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h1>顔認証システム</h1>
+    </div>
+    <!-- <div class="col-md-2">
+        <a href="/" class="btn btn-primary" style="margin-bottom: 5px;">トップに戻る</a>
+        <a href="/list_camera" class="btn btn-info" style="margin-bottom: 5px;">カメラ一覧</a>
+        <a href="/list_user" class="btn btn-info" style="margin-bottom: 5px;">ユーザ情報一覧</a>
+    </div> -->
+
+    <div class="menu-section">
+        <div class="menu-toggle">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+        <nav class="outmenu">
+            <ul role="navigation" class="hidden">
+                <li><a href="/"><i class="fa fa-home"> トップに戻る</i></a></li>
+                <li><a href="/list_camera"><i class="fa fa-list"> カメラ一覧</i></a></li>
+                <li><a href="/list_user"><i class="fa fa-users"> ユーザ情報一覧</i></a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<hr>
+<br>
+
+<form action="/stream" method="post">
+    <div>
+        <!-- <label for="camera">カメラ選択</label><br>
+        <select name="cameraname" required>
+            <option value="">選択してください</option>
+            {% for c in camera_all %}
+            <option value="{{c.cameraname}}">{{ c.cameraname }}</option>
+            {% endfor %}
+        </select> -->
+        
+        <div class="group1">
+            <select name="cameraname" required class="input1" style="background-color: transparent;">
+                <option value="" hidden disabled selected></option>
+                {% for c in camera_all %}
+                <option value="{{c.cameraname}}">{{ c.cameraname }}</option>
+                {% endfor %}
+            </select>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Select Camera</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-left: 5px;">更新</button>
+    </div>
+    <br>
+    <div>
+        <a href="/stop" class="btn btn-danger" style="margin: 10px;">強制停止</a>
+    </div>
+</form>
+
+
+<hr>
+{% if url %}
+    <p>{{ cameraname }}</p>
+    <p>{{ url }}</p>
+    <img src="/video_feed/{{ cameraname }}">
+{% endif %}
+
+
+
+<script src="{{ url_for('static', path='/js/outmenu.js') }}"></script>
+
+{% endblock %}

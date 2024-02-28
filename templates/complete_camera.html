@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h1>カメラを登録しました。</h1>
+    </div>
+    <div class="col-md-2">
+        <a href="/" class="btn btn-primary">トップに戻る</a>
+    </div>
+</div>
+
+<hr>
+<p>{{ cameraname }}を登録しました。</p>
+<p>URLは {{ url }} です。</p>
+<br>
+<p>登録カメラ一覧を見たい場合は<span style="color: darkcyan;"><b>一覧</b></span>ボタンを押してください。<br>
+追加でカメラを登録する場合は<span style="color: limegreen;"><b>登録</b></span>ボタンを押してください。</p>
+<a href="/list_camera" class="btn btn-info" style="display: inline-block;">一覧</a>
+<a href="/register_camera" class="btn btn-success" style="display: inline-block;">登録</a>
+
+{% endblock %}

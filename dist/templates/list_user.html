@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h1>ユーザ一覧</h1>
+    </div>
+    <!-- <div class="col-md-2">
+        <a href="/" class="btn btn-primary" style="margin-bottom: 5px;">トップに戻る</a>
+        <a href="/register_user" class="btn btn-success" style="margin-bottom: 5px;">ユーザ登録</a>
+        <a href="/register_data" class="btn btn-success" style="margin-bottom: 5px;">ユーザデータ登録</a>
+    </div> -->
+
+    <div class="menu-section">
+        <div class="menu-toggle">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+        <nav class="outmenu">
+            <ul role="navigation" class="hidden">
+                <li><a href="/"><i class="fa fa-home"> トップに戻る</i></a></li>
+                <li><a href="/register_camera"><i class="fa fa-plus"> カメラの登録</i></a></li>
+                <li><a href="/list_camera"><i class="fa fa-list"> カメラ情報一覧</i></a></li>
+                <li><a href="/register_user"><i class="fa fa-user-plus"> ユーザ登録</i></a></li>
+                <li><a href="/register_data"><i class="fa fa-id-card"> ユーザデータ登録</i></a></li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<hr>
+
+<br>
+<h3>ユーザ情報一覧</h3>
+<br>
+<form action="/list_user" method="post" name="search_form">
+    <!-- <select name="category" style="margin-bottom: 0.5rem;">
+        <option value="">選択してください</option>
+        <option value="number">社員番号</option>
+        <option value="username">ユーザ名</option>
+        <option value="mail">メールアドレス</option>
+        <option value="regist_num">登録画像数</option>
+    </select> -->
+
+    <div class="group1" style="margin-bottom: 1rem;">
+        <select name="category" required id="category" class="input1" style="background-color: transparent;">
+            <option value="" hidden disabled selected></option>
+            <option value="" hidden></option>
+            <option value="number">社員番号</option>
+            <option value="username">ユーザ名</option>
+            <option value="mail">メールアドレス</option>
+            <option value="regist_num">登録画像数</option>
+        </select>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Select Category</label>
+    </div>
+
+    <br>
+    <div class="group">
+        <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+            <g>
+                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+            </g>
+        </svg>
+        <input class="input" type="search" name="search" placeholder="Search" size="30">
+        <input type="submit" name="submit" value="検索" hidden>
+    </div>
+    <br>
+
+    <div class="default-btn">
+        <input type="submit" name="submit" value="Show All" onclick="OnButtonClick();">
+    </div>
+</form>
+
+<br>
+<p class="text-danger">{% for e in error %}{{ e }}<br>{% endfor %}</p>
+
+<br>
+<form action="/list_user" method="post">
+    <div class="overflow-auto" style="max-height: 500px;">
+        <table class="table" style="text-align: center;">
+            <thead class="table-dark" style="position: sticky; top: 0;">
+                <tr>
+                    <th>社員番号</th>
+                    <th>ユーザ名</th>
+                    <th>メールアドレス</th>
+                    <th>登録画像数</th>
+                    <th>詳細</th>
+                    <th>削除</th>
+                </tr>
+            </thead>
+            <tbody style="vertical-align: middle;">
+                {% for u in user %}
+                <tr>
+                    <td>{{ u.number }}</td>
+                    <td>{{ u.username }}</td>
+                    <td>{{ u.mail }}</td>
+                    <td>{{ u.regist_num }}</td>
+                    <td>
+                        <div class="data-list edit">
+                            <a href="/list_userdata/{{ u.number }}:{{ u.username }}">
+                                <img src="./static/image/ID-photo.svg">
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="delete-list edit">
+                            <a href="/delete_user/{{ u.id }}">
+                                <img src="./static/image/trash-can.svg">
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</form>
+
+
+<script src="{{ url_for('static', path='/js/search-alldisplay.js') }}"></script>
+<script src="{{ url_for('static', path='/js/outmenu.js') }}"></script>
+<script src="{{ url_for('static', path='/js/search.js') }}"></script>
+
+{% endblock %}

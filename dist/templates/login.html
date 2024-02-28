@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h1>ログイン画面</h1>
+    </div>
+</div>
+
+<hr>
+<form action="/login" method="post">
+    <br>
+    <p>
+        社員番号<br>
+        <input type="text" size="30" maxlength="20" name="number" value="{{number}}" placeholder="社員番号を入力してください。">
+    </p>
+    <br>
+    <p>
+        ユーザ名<br>
+        <input type="text" size="30" maxlength="20" name="username" value="{{username}}" placeholder="ユーザ名を入力してください。">
+    </p>
+    <br>
+    <p>
+        パスワード<br>
+        <input type="password" size="40" maxlength="60" name="password" placeholder="パスワードを入力してください。">
+    </p>
+    <br><br>
+    <button type="submit" class="btn btn-primary">ログイン</button>
+</form>
+<br>
+<p class="text-danger">{% for e in error %}{{ e }}<br>{% endfor %}</p>
+
+{% endblock %}

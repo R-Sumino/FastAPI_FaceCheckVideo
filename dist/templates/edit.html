@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-10">
+        <h1>登録内容編集</h1>
+    </div>
+    <!-- <div class="col-md-2">
+        <a href="/" class="btn btn-primary" style="margin-bottom: 5px;">トップに戻る</a>
+        {% if number%}
+            <a href="/{{ path }}/{{ number }}:{{ username }}" class="btn btn-success" style="margin-bottom: 5px;">前の画面に戻る</a>
+        {% else %}
+            <a href="/{{ path }}" class="btn btn-success" style="margin-bottom: 5px;">前の画面に戻る</a>
+        {% endif %}
+    </div> -->
+
+    <div class="menu-section">
+        <div class="menu-toggle">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+        <nav class="outmenu">
+            <ul role="navigation" class="hidden">
+                <li><a href="/"><i class="fa fa-home"> トップに戻る</i></a></li>
+                <li><a href="/list_camera"><i class="fa fa-list"> カメラ情報一覧</i></a></li>
+                <li><a href="/list_user"><i class="fa fa-users"> ユーザ情報一覧</i></a></li>
+                {% if number%}
+                    <li><a href="/{{ path }}/{{ number }}:{{ username }}">前の画面に戻る</a></li>
+                {% else %}
+                    <li><a href="/{{ path }}">前の画面に戻る</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+</div>
+
+<hr>
+
+<br>
+
+<form action="/edit/{{ all_path }}" method="post" class="regist-form">
+    <br>
+    {% for value in all_data %}
+        {% if value[1][0] == 'URL or 接続番号' %}
+            <p style="color: #bbb;">{{ value[1][0] }}</p>
+            <div class="cp_ipradio">
+                {% if value[1][1].isdecimal() %}
+                    <ul>
+                        <li class="list_item">
+                            <input class="js-check option-input" type="radio" name="camera-type" value="Web" id="c_rb1" onclick="formSwitch()" required  checked/>
+                            <label for="c_rb1">Webカメラ</label>
+                        </li>
+                        <li class="list_item">
+                            <input class="js-check option-input" type="radio" name="camera-type" value="IP" id="c_rb2" onclick="formSwitch()" />
+                            <label for="c_rb2">IPカメラ</label>
+                        </li>
+                    </ul>
+                {% else %}
+                    <ul>
+                        <li class="list_item">
+                            <input class="js-check option-input" type="radio" name="camera-type" value="Web" id="c_rb1" onclick="formSwitch()" required/>
+                            <label for="c_rb1">Webカメラ</label>
+                        </li>
+                        <li class="list_item">
+                            <input class="js-check option-input" type="radio" name="camera-type" value="IP" id="c_rb2" onclick="formSwitch()" checked/>
+                            <label for="c_rb2">IPカメラ</label>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+            
+            <br>
+            <div id="Web-id" class="group1">
+                <select name="camera-id" id="device" required class="input1" style="background-color: transparent;">
+                    <option value="" hidden disabled selected></option>
+                    {% for i in range(10) %}
+                        {% if value[1][1]|int == i and value[1][1].isdecimal() %}
+                            <option value="{{ i }}" selected>{{ i }}</option>
+                        {% else %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Connect Number</label>
+            </div>
+            <div class="group1" id="IP-id">
+                {% if value[1][1].isdecimal() %}
+                    <input type="url" class="input1" id="ipcam" name="url" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>URL</label>
+                {% else %}
+                    <input type="url" class="input1" id="ipcam" size="{{ value[1][1]|length + 10 }}" name="url"  value="{{ value[1][1] }}" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>URL</label>
+                {% endif %}
+            </div>
+        {% else %}
+            <div class="group1">
+                <input required="" size="{{ value[1][1]|length + 10 }}" type="text" class="input1" name="{{ value[1][0] }}" value="{{ value[1][1] }}">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>{{ value[1][0] }}</label>
+            </div>
+        {% endif %}
+    <p></p>
+    <br>
+    {% endfor %}
+    <!-- <button type="submit" class="btn btn-primary">再登録</button> -->
+    <button type="submit" class="regist-button">
+        <div class="svg-wrapper-1">
+            <div class="svg-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="none" d="M0 0h24v24H0z"></path>
+                <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+            </svg>
+            </div>
+        </div>
+        <span>RE:Regist</span>
+    </button>
+</form>
+<br>
+<p class="text-danger">{% for e in error %}{{ e }}<br>{% endfor %}</p>
+
+
+<script src="{{ url_for('static', path='/js/regist-radio-button.js') }}"></script>
+<script src="{{ url_for('static', path='/js/input-autosize.js') }}"></script>
+<script src="{{ url_for('static', path='/js/outmenu.js') }}"></script>
+
+{% endblock %}

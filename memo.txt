@@ -1,0 +1,7 @@
+実行ファイルにする際に使用
+.specファイルのdatasに以下を入れる
+.sqlite3は入れる必要ないかも
+('static','static'),('templates','templates'),('db.sqlite3','db.sqlite3'),
+(r'C:\Users\localpc\Anaconda3\envs\minimam\lib\site-packages\facenet_pytorch','facenet_pytorch')
+
+.exeファイルが生成された場所に必要な各外部フォルダまたは外部ファイルを入れておく必要がある

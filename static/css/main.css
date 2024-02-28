@@ -1,0 +1,50 @@
+.info {
+    display: flex;
+    gap: 10px;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.info a {
+    display: inline-block;
+    width: 100%;
+    height: 120%;
+    font-size: 70%;
+}
+
+.camera li, .user li {
+    list-style: none;
+    margin: 1rem;
+}
+
+.container {
+    z-index: 3;
+    color: #fff;
+}
+
+.container .table {
+    color: #fff;
+}
+
+html body{
+    height: 100%;
+    background: #4e54c8;  
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+}
+
+.row {
+    margin: 1.5rem 0;
+}
+
+/* 自動保管の背景と文字を変更させない、もしくは指定するため */
+/* .group1 input:-webkit-autofill {
+    ↓ 自動保管の背景を #09ff15 で上書き
+    -webkit-box-shadow: 0 0 0 1000px #09ff15 inset;
+
+    ↓ 自動保管の文字色を #fff に上書き
+    -webkit-text-fill-color: #fff;
+
+    ↓ 自動保管の背景を変更しないようにする
+    transition: background-color 50000s ease-in-out 0s !important;
+} */
